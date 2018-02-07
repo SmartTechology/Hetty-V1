@@ -4,7 +4,7 @@ void ldrUpdate() {
   const long LDR1interval = 3000;
   const long LDR2interval = 3000;
  
-
+// No delay LDR 1
   if (millis() - LDR1previousMillis >= 3000) {
    
     LDR1 = analogRead(pinLDR1);
@@ -20,7 +20,7 @@ void ldrUpdate() {
 
 
   }
-
+// No delay LDR2
   if (millis() - LDR2previousMillis >= 3000) {
 
     LDR2 = analogRead(pinLDR2);

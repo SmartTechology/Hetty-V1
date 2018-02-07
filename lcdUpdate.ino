@@ -7,8 +7,9 @@ void lcdUpdate() {
 
     case 1: 
     
-      while(Serial1.available() > 0){
-      lcd.write(Serial.read());
+      lcd.setCursor(0,0);
+      lcd.print("hier komt de tijd");
+      break;
 
     case 2 :
       lcd.setCursor(0, 0); //set to start

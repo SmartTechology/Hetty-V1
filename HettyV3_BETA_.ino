@@ -54,7 +54,7 @@ int oldHomeState = 0;
 
 
 // Int Switch Case
-int mainmenu = 1;
+int mainmenu = 2;
 
 
 // Setup 2 LDR's
@@ -142,15 +142,16 @@ int fan = 22;
 
 
 void setup() {
+  //Set up for Alternartive delay
   unsigned long currentMillis = millis();
   unsigned long currentMillis2 = millis();
   unsigned long LDR1currentMillis = millis();
   unsigned long LDR2currentMillis = millis();
-  dhtFix();
-  lcdUpdate();
+  dhtFix(); // Call DHT 
+  lcdUpdate(); //Call Function
   lcd.begin(16, 2); //LCD setup
   lcd.setBacklight(HIGH); //Turn backlight on
-  Serial.begin(9600);
+  Serial.begin(9600); // start serial 
   Serial1.begin(9600);//Turn on
   lcd.setCursor(0, 0); // Set Cursor to 0,0
   lcd.print("Welcome"); // Message
@@ -158,7 +159,7 @@ void setup() {
   lcd.setCursor(0, 1); // Set cursor to second row
   lcd.print("Version:3.0 BETA"); // Message
   delay(1000); //delay
-  mainmenu = 1; // set switch case to 1
+  mainmenu = 2; // set switch case to 1
   mainMenu(); // call main menu
   Serial.print(" LDR1:");
   Serial.println(LDR1);
@@ -168,10 +169,10 @@ void setup() {
   lcdUpdate(); // Call void lcdUpdate
 
 
-  
+ //set up led's  
   pinMode (pinLDR1, INPUT);
   pinMode (pinLDR2, INPUT);
-  pinMode(rLED, OUTPUT); // Setup red LED
+  pinMode(rLED, OUTPUT); 
   pinMode(led1, OUTPUT); 
   pinMode(led2, OUTPUT); 
   pinMode(led3, OUTPUT); 
@@ -183,9 +184,10 @@ void setup() {
 }
 
 void loop() {
-  dhtFix();
-  ldrUpdate();
-  
+  dhtFix(); //Call DHT  
+  ldrUpdate(); //Call LDR
+
+  //set up sensors
   PIR = digitalRead(PIRpin);
   upState = digitalRead(Up);
   downState = digitalRead(Down);
@@ -257,11 +259,12 @@ void loop() {
   }
 
     if (configTemp < showTemp) {
-      digitalWrite(fan, HIGH);
+      digitalWrite(fan, HIGH); // fan
+      digitalWrite("fan working"); //message
     }
-
+// light simulation
     if (PIR == HIGH && LDR2 < 600) {
-      digitalWrite(led1, HIGH);
+      digitalWrite(led1, HIGH); 
       digitalWrite(led2, HIGH);
       digitalWrite(led3, HIGH);
       
@@ -271,7 +274,7 @@ void loop() {
     if (configTemp == showTemp) {
        digitalWrite(fan, LOW); 
        digitalWrite(rLED, LOW);
-    }
+    }    
  if (PIR == LOW && LDR2 > 600) {
       digitalWrite(led1, LOW);
       digitalWrite(led2, LOW);

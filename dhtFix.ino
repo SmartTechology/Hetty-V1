@@ -1,7 +1,7 @@
 void dhtFix(){
 unsigned long currentMillis = millis(); 
 unsigned long currentMillis2 = millis();
-
+// No delay Temp update
   if (currentMillis - previousMillis >= interval) {
     chk = DHT.read11(DHT11_pin);
     showTemp = DHT.temperature;
@@ -18,7 +18,7 @@ unsigned long currentMillis2 = millis();
     
   }
 
-  
+  // No delay Humidity update
   if (currentMillis2 - previousMillis2 >= interval) {
     
     showHumid = DHT.humidity;
